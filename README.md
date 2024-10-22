@@ -18,7 +18,7 @@ This script requires the following libraries and tools:
 3. **SciPy**: For reading `.wav` files and the metadata of them.
 4. **Tkinter**: For the file dialog to select `.wav` files.
 5. **VGAudioCLI**: An executable which utility is to convert selected `.wav` files to `.hac`.
-6. **(Optional) PyTube*: Library that is required for the URL extractor tool.
+6. **(Optional) PyTube**: Library that is required for the URL extractor tool.
 ### Install Required Libraries
 
 You can install the necessary Python libraries using `pip`. Run the following command:
