@@ -13,25 +13,35 @@ def is_valid_youtube_url(url):
 
 # Function that downloads music in .wav format from YouTube using yt_dlp and ffmpeg
 def download_music():
-    down = input('Do you want to download music in .wav from YouTube? (y/n): ')
+    down = input('Do you want to download music in .wav from multiple YouTube URLs? (y/n): ')
     
     if down.lower() == 'y':
-        url = input('Paste the URL: ')
+        urls = []
+        
+        while True:
+            url = input('Paste the YouTube URL (or press Enter to finish): ')
+            if not url:
+                break
 
-        # Validate the URL using the is_valid_youtube_url function
-        while url.startswith("https"):
+            # Validate the URL
             if not is_valid_youtube_url(url):
                 print("Invalid YouTube URL. Please try again.")
-                url = input('Paste a valid URL: ')
                 continue
 
-            # Directory where the downloaded WAV files will be stored
-            downloaded_wav_dir = 'wav_files'
-            os.makedirs(downloaded_wav_dir, exist_ok=True)
+            urls.append(url)
+        
+        if not urls:
+            print('No valid URLs entered.')
+            return
 
-            name_file_wav = input('Name of the wav file to save (only the name, without .wav): ')
+        # Directory where the downloaded WAV files will be stored
+        downloaded_wav_dir = 'wav_files'
+        os.makedirs(downloaded_wav_dir, exist_ok=True)
 
-            # Prepare yt_dlp download options
+        for url in urls:
+            name_file_wav = input(f'Name for the wav file of URL {url} (without .wav): ')
+
+            # Options for ydl
             ydl_opts = {
                 'format': 'bestaudio/best',
                 'postprocessors': [{
@@ -51,10 +61,7 @@ def download_music():
                 shutil.move(wav_file_path, os.path.join(downloaded_wav_dir, wav_file_path))
                 print(f'Music downloaded successfully as {wav_file_path} and moved to {downloaded_wav_dir}.')
             except Exception as e:
-                print(f"Error downloading or moving music: {e}")
-            
-            # Ask for another URL
-            url = input('Paste another URL (or press Enter to stop): ')
+                print(f"Error downloading or moving music for {url}: {e}")
     else:
         print('No music downloaded.')
 
@@ -72,7 +79,7 @@ def select_files_wav_and_calc():
         # Calculate song duration in seconds
         duration_seconds = data.shape[0] / fs
         
-        # Calculate loop number
+        # Calculate loop number for the looping parameter needed in VGAudioCLI.exe
         loop_number = fs * duration_seconds
         
         # Get the output .hca file name for each wav file
@@ -87,7 +94,6 @@ def select_files_wav_and_calc():
             print(f"Script executed successfully for {os.path.basename(route)}:\n{result.stdout}")
         except subprocess.CalledProcessError as e:
             print(f"Error occurred executing the script for {os.path.basename(route)}:\n{e.stderr}")
-
 
 download_music()
 select_files_wav_and_calc()
