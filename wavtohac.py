@@ -72,7 +72,7 @@ def select_files_wav_and_calc():
         hca_name = input(f"Output file name for {os.path.basename(route)} (type also the .hca): ")
         
         # Form the command to run VGAudiocli.exe
-        command = f'VGAudiocli.exe -l 0-{int(loop_number)} -i "{route}" {hca_name}'    
+        command = f'VGAudiocli.exe -l 0-{int(loop_number)} -i "{route}" ./hca_converted/{hca_name}'    
         try:
             # Execute the command in the terminal
             result = subprocess.run(command, shell=True, check=True, text=True, capture_output=True)
