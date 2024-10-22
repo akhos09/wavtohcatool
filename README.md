@@ -57,7 +57,7 @@ pip install yt-dlp scipy
 2. **Download Music**:
 
    - When prompted, type `y` to download music.
-   - Paste the YouTube URL and ensure it is valid.
+   - Paste the YouTube URL and ensure it is valid. You can paste one per input until you hit enter.
    - Specify the name for the `.wav` file without the extension ``.
    - Repeat for multiple URLs as desired.
 
