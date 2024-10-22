@@ -4,6 +4,7 @@ import shutil
 import yt_dlp
 import re
 from tkinter import filedialog as fd
+from tkinter import Tk
 from scipy.io import wavfile
 
 # Function to validate YouTube URL
@@ -67,8 +68,15 @@ def download_music():
 
 # Function to select multiple WAV files and perform necessary calculations to loop the music
 def select_files_wav_and_calc():
+    
+    print('Please, select the wav files do you want to convert into .hca format using the file selector window.')
+    root = Tk()
+    root.withdraw()  # Hide the root window
+    root.attributes('-topmost', True)   # Dialog above other applications
     filetypes = [("wav files", "*.wav")]
     wav_files = fd.askopenfilenames(filetypes=filetypes)
+    # Destroy the hidden Tkinter root window after use
+    root.destroy()
     
     for wav_file in wav_files:
         route = os.path.abspath(wav_file)  # Get absolute path of the file
