@@ -1,17 +1,10 @@
 import os
 import subprocess
+import shutil
 import yt_dlp
 import re
 from tkinter import filedialog as fd
 from scipy.io import wavfile
-
-
-
-# Function that checks if the URL is a valid link
-def is_valid_youtube_url(url):
-
-    youtube_regex = r'^(https?://)?(www\.)?(youtube\.com/watch\?v=|youtu\.be/)[\w-]{11}$'
-    return re.match(youtube_regex, url) is not None
 
 # Function that downloads music in .wav format with only a URL. uses ffmpeg and yt_dlp
 def download_music():
@@ -19,6 +12,11 @@ def download_music():
     
     if down.lower() == 'y':
         url = input('Paste the URL: ')
+        
+        # Dir where the downloaded wav files go
+        downloaded_wav_dir = 'wav_files'
+        os.makedirs(downloaded_wav_dir, exist_ok=True)
+
         
         while url.startswith("https"):
             if not is_valid_youtube_url(url):
@@ -42,9 +40,13 @@ def download_music():
             try:
                 with yt_dlp.YoutubeDL(ydl_opts) as ydl:
                     ydl.download([url])
-                print(f'Music downloaded successfully as {name_file_wav}.wav')
+                print(f'Music downloaded successfully as {wav_file_path} and moved to {downloaded_wav_dir}.')
             except Exception as e:
-                print(f"Error downloading music: {e}")
+                print(f"File saved in {downloaded_wav_dir}")
+                
+                # Move the downloaded WAV file to the downloaded_wav directory
+                wav_file_path = f"{name_file_wav}.wav"
+                shutil.move(wav_file_path, os.path.join(downloaded_wav_dir, wav_file_path))
 
             # Ask for another URL
             url = input('Paste another URL (or press Enter to stop): ')
@@ -81,6 +83,5 @@ def select_files_wav_and_calc():
             print(f"Error occurred executing the script for {os.path.basename(route)}:\n", e.stderr)
 
 # Call the function to select WAV files and perform the conversion
-is_valid_youtube_url
 download_music()
 select_files_wav_and_calc()
