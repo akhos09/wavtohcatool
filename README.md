@@ -13,11 +13,10 @@ This Python script allows you to download audio from YouTube videos in `.wav` fo
 
 This script requires the following libraries and tools:
 
-1. **Python 3.x**
-2. **yt-dlp**: A command-line program to download videos from YouTube and other sites.
-3. **ffmpeg**: A multimedia framework for handling video, audio, and other multimedia files and streams.
-4. **SciPy**: For reading `.wav` files and the metadata of them.
-5. **Tkinter**: For the file dialog to select `.wav` files.
+1. **yt-dlp**: A command-line program to download videos from YouTube and other sites.
+2. **ffmpeg**: A multimedia framework for handling video, audio, and other multimedia files and streams.
+3. **SciPy**: For reading `.wav` files and the metadata of them.
+4. **Tkinter**: For the file dialog to select `.wav` files.
 
 ### Install Required Libraries
 
