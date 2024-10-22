@@ -76,7 +76,7 @@ pip install yt-dlp scipy
 - Ensure that `ffmpeg` is in the same directory as the script.
 - Make sure `yt-dlp` is updated to the latest version for compatibility.
 - If any errors occur while executing the commands, check the output for error messages for troubleshooting.
-- If the script is not executed in the directory of the script, it will not recognise the .exe of VGAudioCLI, so just make sure you are in the directory of the script and the VGAudioCLI.exe.
+- If the script is not executed where the script is located at, it will not recognise the .exe of VGAudioCLI, so just make sure you are in the directory of the script and the VGAudioCLI.exe.
 
 ## License
 
