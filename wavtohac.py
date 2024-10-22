@@ -6,27 +6,32 @@ import re
 from tkinter import filedialog as fd
 from scipy.io import wavfile
 
-# Function that downloads music in .wav format with only a URL. uses ffmpeg and yt_dlp
+# Function to validate YouTube URL
+def is_valid_youtube_url(url):
+    youtube_regex = r'^(https?://)?(www\.)?(youtube\.com/watch\?v=|youtu\.be/)[\w-]{11}$'
+    return re.match(youtube_regex, url) is not None
+
+# Function that downloads music in .wav format from YouTube using yt_dlp and ffmpeg
 def download_music():
     down = input('Do you want to download music in .wav from YouTube? (y/n): ')
     
     if down.lower() == 'y':
         url = input('Paste the URL: ')
-        
-        # Dir where the downloaded wav files go
-        downloaded_wav_dir = 'wav_files'
-        os.makedirs(downloaded_wav_dir, exist_ok=True)
 
-        
+        # Validate the URL using the is_valid_youtube_url function
         while url.startswith("https"):
             if not is_valid_youtube_url(url):
                 print("Invalid YouTube URL. Please try again.")
                 url = input('Paste a valid URL: ')
                 continue
 
-            name_file_wav = input('Name of the wav file to save (only the name and not with the .wav): ')
+            # Directory where the downloaded WAV files will be stored
+            downloaded_wav_dir = 'wav_files'
+            os.makedirs(downloaded_wav_dir, exist_ok=True)
 
-            # Prepare download options
+            name_file_wav = input('Name of the wav file to save (only the name, without .wav): ')
+
+            # Prepare yt_dlp download options
             ydl_opts = {
                 'format': 'bestaudio/best',
                 'postprocessors': [{
@@ -40,22 +45,21 @@ def download_music():
             try:
                 with yt_dlp.YoutubeDL(ydl_opts) as ydl:
                     ydl.download([url])
-                print(f'Music downloaded successfully as {wav_file_path} and moved to {downloaded_wav_dir}.')
-            except Exception as e:
-                print(f"File saved in {downloaded_wav_dir}")
-                
-                # Move the downloaded WAV file to the downloaded_wav directory
+
+                # Move the downloaded WAV file to the specified directory
                 wav_file_path = f"{name_file_wav}.wav"
                 shutil.move(wav_file_path, os.path.join(downloaded_wav_dir, wav_file_path))
-
+                print(f'Music downloaded successfully as {wav_file_path} and moved to {downloaded_wav_dir}.')
+            except Exception as e:
+                print(f"Error downloading or moving music: {e}")
+            
             # Ask for another URL
             url = input('Paste another URL (or press Enter to stop): ')
     else:
         print('No music downloaded.')
 
-# Function to select multiple WAV files and perform necessary calculations to loop the music.
+# Function to select multiple WAV files and perform necessary calculations to loop the music
 def select_files_wav_and_calc():
-
     filetypes = [("wav files", "*.wav")]
     wav_files = fd.askopenfilenames(filetypes=filetypes)
     
@@ -68,20 +72,22 @@ def select_files_wav_and_calc():
         # Calculate song duration in seconds
         duration_seconds = data.shape[0] / fs
         
+        # Calculate loop number
         loop_number = fs * duration_seconds
         
         # Get the output .hca file name for each wav file
-        hca_name = input(f"Output file name for {os.path.basename(route)} (type also the .hca): ")
+        hca_name = input(f"Output file name for {os.path.basename(route)} (include the .hca extension): ")
         
         # Form the command to run VGAudiocli.exe
-        command = f'VGAudiocli.exe -l 0-{int(loop_number)} -i "{route}" ./hca_converted/{hca_name}'    
+        command = f'VGAudiocli.exe -l 0-{int(loop_number)} -i "{route}" ./hca_converted/{hca_name}'
+        
         try:
             # Execute the command in the terminal
             result = subprocess.run(command, shell=True, check=True, text=True, capture_output=True)
-            print(f"Script executed successfully for {os.path.basename(route)}:\n", result.stdout)
+            print(f"Script executed successfully for {os.path.basename(route)}:\n{result.stdout}")
         except subprocess.CalledProcessError as e:
-            print(f"Error occurred executing the script for {os.path.basename(route)}:\n", e.stderr)
+            print(f"Error occurred executing the script for {os.path.basename(route)}:\n{e.stderr}")
 
-# Call the function to select WAV files and perform the conversion
+
 download_music()
 select_files_wav_and_calc()
