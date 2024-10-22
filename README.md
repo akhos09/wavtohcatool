@@ -36,7 +36,7 @@ pip install yt-dlp scipy
 1. Clone this repository:
 
    ```
-   git clone https://github.com/akhos09/WavToHac.git
+   git clone https://github.com/akhos09/wavtohac.git
    cd WavToHac
    ```
 
