@@ -28,7 +28,7 @@ pip install yt-dlp scipy
 ```
 
 ### Install FFmpeg
-1. Download the .exe from [FFmpeg's official site](https://ffmpeg.org/download.html). or [FFmpeg's repository](https://github.com/BtbN/FFmpeg-Builds/releases) (Personally, I prefer the repository). 
+1. Download the .exe from [FFmpeg's official site](https://ffmpeg.org/download.html). or [FFmpeg's repository](https://github.com/BtbN/FFmpeg-Builds/releases) (Personally I prefer the repository). 
 2. Extract the downloaded ZIP file to the directory where the script is located at.
 
 ## Installation
