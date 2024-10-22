@@ -17,6 +17,8 @@ This script requires the following libraries and tools:
 2. **ffmpeg**: A multimedia framework for handling video, audio, and other multimedia files and streams.
 3. **SciPy**: For reading `.wav` files and the metadata of them.
 4. **Tkinter**: For the file dialog to select `.wav` files.
+5. **VGAudioCLI**: An executable which utility is to convert selected `.wav` files to `.hac`.
+6. **ffmpeg**: Tool that does all the proccess of downloading the `.wav` file of URL.
 
 ### Install Required Libraries
 
