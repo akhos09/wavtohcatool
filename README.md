@@ -42,7 +42,7 @@ pip install yt-dlp scipy
 
 2. Ensure that all dependencies are installed as outlined above.
 
-3. Place `VGAudiocli.exe` in the same directory as this script or specify the correct path in the code.
+3. Place `ffmpeg.exe` in the same directory as this script or specify the correct path in the code.
 
 ## Usage
 
