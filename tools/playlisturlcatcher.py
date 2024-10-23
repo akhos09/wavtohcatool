@@ -5,7 +5,8 @@
 from pytube import Playlist
 
 # Replace with the playlist URL you want to extract from
-URL_PLAYLIST = 'https://www.youtube.com/watch?v=ixZDTiXiHsc&list=PLJMygvGvbC-YesYVG3_lQ826Xc2UEL1E6'
+
+URL_PLAYLIST = input('URL playlist from YouTube: ')
 
 # Initialize the playlist object
 playlist = Playlist(URL_PLAYLIST)
