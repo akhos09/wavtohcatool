@@ -107,7 +107,7 @@ if first_question:
         print('Please select a .txt file')
         file_path = select_file()
         print('No .txt file selected. Exiting...')
-        if file_path:
+    if file_path:
             download_music_from_file(file_path)
             select_files_wav_and_calc(file_path)
     else:
