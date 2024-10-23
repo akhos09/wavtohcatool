@@ -15,3 +15,7 @@ for url in playlist:
     urls.append(url)
     
 print(urls)
+
+with open('urls.log', 'w') as file:
+    for url in urls:
+        file.write(url + '\n')
