@@ -3,7 +3,7 @@
 
 This Python script allows you to download audio from YouTube videos in `.wav` format and convert multiple `.wav` files into `.hca` and looping that files using `VGAudiocli.exe`. 
 
-Go to [Releases](https://github.com/akhos09/wavtohactool/releases) to download the most recent version of the executable.
+**Go to [Releases](https://github.com/akhos09/wavtohactool/releases) to download the most recent version of the executable.**
 
 ## Table of Contents
 - [Dependencies](#dependencies)
