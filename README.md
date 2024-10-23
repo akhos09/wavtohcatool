@@ -5,6 +5,8 @@ This Python script allows you to download audio from YouTube videos in `.wav` fo
 
 **Go to [Releases](https://github.com/akhos09/wavtohactool/releases) to download the most recent version of the executable.**
 
+<details>
+<summary>Read more</summary>
 ## Table of Contents
 - [Dependencies](#dependencies)
 - [Installation](#installation)
