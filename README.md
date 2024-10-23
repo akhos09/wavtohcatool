@@ -7,6 +7,7 @@ This Python script allows you to download audio from YouTube videos in `.wav` fo
 
 <details>
 <summary>Read more</summary>
+   
 ## Table of Contents
 - [Dependencies](#dependencies)
 - [Installation](#installation)
