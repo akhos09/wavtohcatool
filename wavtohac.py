@@ -8,17 +8,16 @@ from tkinter import filedialog as fd
 from tkinter import Tk
 from scipy.io import wavfile
 
-# Function to validate YouTube URL
+
 def is_valid_youtube_url(url):
     youtube_regex = r'^(https?://)?(www\.)?(youtube\.com/watch\?v=|youtu\.be/)[\w-]{11}$'
     return re.match(youtube_regex, url) is not None
 
-# Function to download music in .wav format from YouTube using yt_dlp and ffmpeg
+
 def download_music_from_file(file_path):
     with open(file_path, 'r') as file:
         lines = file.readlines()
-
-    # Directory where the downloaded WAV files will be stored
+        
     downloaded_wav_dir = 'wav_files'
     os.makedirs(downloaded_wav_dir, exist_ok=True)
 
@@ -26,7 +25,6 @@ def download_music_from_file(file_path):
         # Split each line into URL, WAV name, and HCA name
         url, wav_name, hca_name = line.strip().split(',')
 
-        # Validate the URL
         if not is_valid_youtube_url(url):
             print(f"Invalid YouTube URL: {url}. Skipping.")
             continue
@@ -46,19 +44,16 @@ def download_music_from_file(file_path):
             with yt_dlp.YoutubeDL(ydl_opts) as ydl:
                 ydl.download([url])
 
-            # Move the downloaded WAV file to the specified directory
             wav_file_path = f"{wav_name}.wav"
             shutil.move(wav_file_path, os.path.join(downloaded_wav_dir, wav_file_path))
             print(f'Music downloaded successfully as {wav_file_path} and moved to {downloaded_wav_dir}.')
         except Exception as e:
             print(f"Error downloading or moving music for {url}: {e}")
-
-# Function to select multiple WAV files and perform necessary calculations to loop the music
+            
 def select_files_wav_and_calc(file_path):
     with open(file_path, 'r') as file:
         lines = file.readlines()
 
-    # Create the output directory for HCA files
     os.makedirs('./hca_converted', exist_ok=True)
 
     for line in lines:
@@ -78,7 +73,6 @@ def select_files_wav_and_calc(file_path):
         command = f'VGAudiocli.exe -l 0-{int(loop_number)} -i "{wav_file}" ./hca_converted/{hca_name}'
         
         try:
-            # Execute the command in the terminal
             result = subprocess.run(command, shell=True, check=True, text=True, capture_output=True)
             print(f"Script executed successfully for {wav_name}:\n{result.stdout}")
             
