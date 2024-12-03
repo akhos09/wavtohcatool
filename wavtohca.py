@@ -108,6 +108,3 @@ if first_question:
         tkinter.messagebox.showerror(title='ERROR', message='Paste the ffmpeg.exe into the directory of the script. Download: https://github.com/BtbN/FFmpeg-Builds/releases')
 else:
     tkinter.messagebox.showerror(title='ERROR', message='Execute the script in the directory of the script.')
-
-    
-
