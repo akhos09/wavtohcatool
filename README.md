@@ -3,6 +3,11 @@
 
 This Python script allows you to download audio from YouTube videos in `.wav` format and convert multiple `.wav` files into `.hca` and looping that files using `VGAudiocli.exe`. 
 
+**Go to [Releases](https://github.com/akhos09/wavtohactool/releases) to download the most recent version of the executable.**
+
+<details>
+<summary>Read more</summary>
+   
 ## Table of Contents
 - [Dependencies](#dependencies)
 - [Installation](#installation)
@@ -50,26 +55,19 @@ pip install yt-dlp scipy
 
    Open a terminal or command prompt and navigate to the directory containing the script. Run the following command:
 
-   ```bash
+   ```
    python wavtohac.py
    ```
 
-2. **Download Music**:
+2. **Import the .txt file**
 
-   - When prompted, type `y` to download music.
-   - Paste the YouTube URL and ensure it is valid. You can paste one per input until you hit enter.
-   - Specify the name for the `.wav` file without the extension ``.
-   - Repeat for multiple URLs as desired.
+   Write down an `.txt` file (https://url,name,name.hca), to import the URL of the song from YouTube you want to download, the name of the `.wav` file, and the converted `.hca` file name.
+   For example:
 
-3. **Convert WAV Files**:
-
-   - After downloading, you will be prompted to select multiple `.wav` files using a file dialog.
-   - For each selected file, specify the output `.hca` filename.
-   - The script will run `VGAudiocli.exe` to convert each file.
-
-4. **Stop the Process**:
-
-   - You can stop entering URLs by simply pressing Enter when asked for another URL.
+   ```
+   https://www.youtube.com/watch?v=ixZDTiXiHsc,song1,hca1.hca
+   https://www.youtube.com/watch?v=gqbQuypKCCU,song,hca2.hca
+   ```
 
 ## Troubleshooting
 
@@ -80,4 +78,4 @@ pip install yt-dlp scipy
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+See the [LICENSE](LICENSE) file for details.
